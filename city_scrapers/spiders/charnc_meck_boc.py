@@ -371,6 +371,7 @@ class CharncMeckBocSpider(LegistarSpider):
             dt = datetime.fromisoformat(value)
             return dt.astimezone(self._tz).replace(tzinfo=None)
         except (ValueError, TypeError):
+            self.logger.warning("Failed to parse datetime object")
             return None
 
     def _parse_description(self, attrs):
